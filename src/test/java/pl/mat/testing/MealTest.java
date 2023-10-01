@@ -2,10 +2,7 @@ package pl.mat.testing;
 
 import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.sameInstance;
-import static org.hamcrest.Matchers.not;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MealTest {
@@ -21,7 +18,7 @@ class MealTest {
 
         // then
         assertEquals(28, discountedPrice);
-        assertThat(discountedPrice, equalTo(28));
+        assertThat(discountedPrice).isEqualTo(28);
     }
 
     @Test
@@ -33,7 +30,8 @@ class MealTest {
 
         // then
         assertSame(meal1, meal2);
-        assertThat(meal1, sameInstance(meal2));
+        assertThat(meal1).isSameAs(meal2);
+
     }
 
     @Test
@@ -45,7 +43,8 @@ class MealTest {
 
         // then
         assertNotSame(meal1, meal2);
-        assertThat(meal1, not(sameInstance(meal2)));
+        assertThat(meal1).isNotSameAs(meal2);
+
     }
 
     @Test
@@ -57,6 +56,7 @@ class MealTest {
 
         // then
         assertEquals(meal1, meal2, "Checking if two meals are equal");
+        assertThat(meal1).isEqualTo(meal2);
     }
 
 

@@ -1,10 +1,12 @@
-package pl.mat.testing;
+package pl.mat.testing.account;
 
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumingThat;
 
@@ -20,7 +22,9 @@ class AccountTest {
 
         //then
         assertFalse(newAccount.isActive(), "Check if new account is not active");
-        assertThat(newAccount.isActive()).isFalse();
+//        assertThat(newAccount.isActive()).isFalse(); // <- asercja z junit
+        assertThat(newAccount.isActive(), equalTo(false));
+        assertThat(newAccount.isActive(), is(false));
 
     }
 
@@ -35,7 +39,8 @@ class AccountTest {
 
         //then
         assertTrue(newAccount.isActive());
-        assertThat(newAccount.isActive()).isTrue();
+        assertThat(newAccount.isActive(), equalTo(true));
+//        assertThat(newAccount.isActive()).isTrue();
 
     }
 
@@ -50,7 +55,8 @@ class AccountTest {
 
         //then
         assertNull(address);
-        assertThat(address).isNull();
+        assertThat(address, nullValue());
+//        assertThat(address).isNull();
 
     }
 
@@ -67,7 +73,8 @@ class AccountTest {
 
         //then
         assertNotNull(defaultAddress);
-        assertThat(defaultAddress).isNotNull();
+//        assertThat(defaultAddress).isNotNull();
+        assertThat(defaultAddress, is(notNullValue()));
 
     }
 
@@ -85,6 +92,32 @@ class AccountTest {
         assumingThat(address != null, () -> {
             assertTrue(account.isActive());
         });
+
+    }
+
+    @Test
+    void invalidEmailShouldThrowException() {
+
+        //given
+        Account account = new Account();
+
+        //when
+        //then
+        assertThrows(IllegalArgumentException.class, () -> account.setEmail("wrongEmail"));
+
+    }
+
+    @Test
+    void validEmailShouldBeSet() {
+
+        //given
+        Account account = new Account();
+
+        //when
+        account.setEmail("kontakt@mat-ste.com");
+
+        //then
+        assertThat(account.getEmail(), is("kontakt@mat-ste.com"));
 
     }
 

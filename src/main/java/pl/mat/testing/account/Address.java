@@ -1,4 +1,4 @@
-package pl.mat.testing;
+package pl.mat.testing.account;
 
 public class Address {
     private String street;

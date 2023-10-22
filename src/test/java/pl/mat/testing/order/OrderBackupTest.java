@@ -1,6 +1,7 @@
-package pl.mat.testing;
+package pl.mat.testing.order;
 
 import org.junit.jupiter.api.*;
+import pl.mat.testing.Meal;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

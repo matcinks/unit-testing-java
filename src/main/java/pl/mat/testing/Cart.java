@@ -1,5 +1,7 @@
 package pl.mat.testing;
 
+import pl.mat.testing.order.Order;
+
 import java.util.ArrayList;
 import java.util.List;
 

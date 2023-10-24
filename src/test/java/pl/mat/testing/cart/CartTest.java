@@ -1,7 +1,9 @@
-package pl.mat.testing;
+package pl.mat.testing.cart;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pl.mat.testing.Meal;
 import pl.mat.testing.order.Order;
 
 import java.time.Duration;
@@ -25,7 +27,7 @@ class CartTest {
 
         //when
         //then
-        assertTimeout(Duration.ofMillis(100), cart::simulateLargeOrder);
+        Assertions.assertTimeout(Duration.ofMillis(100), cart::simulateLargeOrder);
 
     }
 
